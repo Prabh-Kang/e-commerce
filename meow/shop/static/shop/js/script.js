@@ -85,8 +85,8 @@ function loadDefault(button) {
     let cartObj = checkInternalStorage();
 
         button.parentNode.innerHTML = `
-        <button class="btn btn-minus btn-primary mr-4" id="${button.id}">-</button> <span id="${button.id}">${cartObj[button.id]}</span> 
-        <button class="btn btn-plus btn-primary ml-4" id="${button.id}" >+</button>
+        <button class="btn btn-minus btn-sm btn-primary mr-3" id="${button.id}">-</button> <span id="${button.id}">${cartObj[button.id]}</span> 
+        <button class="btn btn-plus btn-sm btn-primary ml-3" id="${button.id}" >+</button>
         `
         console.log("activating plus and minus btn functions");
         
@@ -98,8 +98,8 @@ function loadDefault2(button) {
     let cartObj = checkInternalStorage();
         if(Object.keys(cartObj).includes(button.id)){
         button.parentNode.innerHTML = `
-        <button class="btn btn-minus btn-primary mr-4" id="${button.id}">-</button> <span id="${button.id}">${cartObj[button.id]}</span> 
-        <button class="btn btn-plus btn-primary ml-4" id="${button.id}" >+</button>
+        <button class="btn btn-minus btn-sm btn-primary mr-3" id="${button.id}">-</button> <span id="${button.id}">${cartObj[button.id]}</span> 
+        <button class="btn btn-plus btn-sm btn-primary ml-3" id="${button.id}" >+</button>
         `
         console.log("activating functions");
         }
@@ -139,7 +139,7 @@ function minusBtnFunc(button) {
         let id = String(button.target.id);
         let cartObj = checkInternalStorage();
         if (cartObj[button.target.id] == 1) {
-            button.target.parentNode.innerHTML = ` <button class="btn btn-primary btn-block cart-btn" id="${button.target.id}"><span>Add To Cart </span></button>`;
+            button.target.parentNode.innerHTML = ` <button class="btn btn-primary btn-block btn-sm cart-btn" id="${button.target.id}"><span>Add To Cart </span></button>`;
             delete cartObj[button.target.id];
             localStorage.setItem("cart", JSON.stringify(cartObj));
             addToCartFunc(document.getElementById(id));

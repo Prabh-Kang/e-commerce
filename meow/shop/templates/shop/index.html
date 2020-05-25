@@ -23,10 +23,14 @@
                         <h5 class="card-title" id="pr{{prod.id}}">{{prod.product_name}}</h5>
                         <p class="card-text">{{prod.product_description}}</p>
                     </div>
-                    <div class="btnn d-flex justify-content-center my-2">
-                    <input class="btn btn-primary btn-block cart-btn" id="{{prod.id}}" value="Add To Cart"><span id="{{prod.id}}"></span></input>
+                    <div class="row">
+                    <div class="btnn d-flex justify-content-center my-2 mr-2 ml-3">
+                    <button class="btn btn-primary cart-btn btn-sm" id="{{prod.id}}">Add To Cart<span id="{{prod.id}}"></span></button>
                 </div>
-                <a href="/shop/productPage/{{prod.id}}" class="btn btn-primary btn-block" name="">Quick View</a>
+                <div>
+                <a href="/shop/productPage/{{prod.id}}" class="btn btn-primary btn-sm btn-block" style="position: relative; top: 7px;">Quick View</a>
+                </div>
+                </div>
                 </div>
             </div>
         </div>
