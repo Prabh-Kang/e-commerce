@@ -9,6 +9,6 @@ class Product(models.Model):
     category = models.CharField(max_length = 50, default = "")
     sub_category = models.CharField(max_length = 50, default = "")
     product_img = models.ImageField(upload_to = "shop/image" , default = "")
-    
+    product_price = models.FloatField(max_length=20, default=0.00)
     def __str__(self):
         return self.product_name
