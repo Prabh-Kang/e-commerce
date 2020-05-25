@@ -1,0 +1,133 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+  background-image: url(/static/shop/bgimg/back-pattern.png);
+}
+
+.mainDiv {
+  width: 80%;
+  margin: 100px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.mainDiv .prod-img {
+  height: 400px;
+  width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+}
+
+.mainDiv .prod-img img {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation: rotate-img 2s steps(30, end) 1s 1 normal both;
+          animation: rotate-img 2s steps(30, end) 1s 1 normal both;
+}
+
+.mainDiv .prod-detail {
+  height: 400px;
+  width: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
+}
+
+.mainDiv .prod-detail h2 {
+  margin-bottom: 13px;
+  white-space: nowrap;
+  width: 20rem;
+  overflow: hidden;
+  -webkit-animation: animated-text 2s steps(30, end) 1s 1 normal both;
+          animation: animated-text 2s steps(30, end) 1s 1 normal both;
+}
+
+.mainDiv .prod-detail .description {
+  margin-bottom: 13px;
+}
+
+.mainDiv .prod-detail .price {
+  font-weight: 600;
+  margin-bottom: 13px;
+}
+
+@-webkit-keyframes animated-text {
+  from {
+    width: 0;
+  }
+  to {
+    width: 20rem;
+  }
+}
+
+@keyframes animated-text {
+  from {
+    width: 0;
+  }
+  to {
+    width: 20rem;
+  }
+}
+
+@-webkit-keyframes rotate-img {
+  from {
+  }
+  to {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+}
+
+@keyframes rotate-img {
+  from {
+  }
+  to {
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+}
+
+@media (max-width: 900px) {
+  .mainDiv {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+/*# sourceMappingURL=prod-img.css.map */
