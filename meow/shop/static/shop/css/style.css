@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@600&display=swap");
+* {
+  font-family: Lora, Arial, Helvetica, sans-serif;
+}
+
+.owl-prev {
+  left: -30px;
+}
+
+.owl-next {
+  right: -30px;
+}
+
+.owl-prev,
+.owl-next {
+  position: absolute;
+  top: 30%;
+}
+
+.owl-prev span,
+.owl-next span {
+  font-size: 60px;
+  color: #787878;
+}
+
+.owl-theme .owl-nav [class*="owl-"]:hover {
+  background: transparent;
+}
+
+.owl-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+/*# sourceMappingURL=style.css.map */

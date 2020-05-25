@@ -1,0 +1,41 @@
+{% extends "shop/basic.html" %}
+{% block title %} Value Kart - Home {% endblock %}
+<!-- CONTAINER -->
+{% block body %}
+
+<div class="container">
+    
+</div>
+
+<div class="container my-4">
+
+    <!-- CAROUSEL -->
+
+    {% for product in products %}
+    <h2 class="my-3">{{product.0.category}}</h2>
+    <div class="owl-carousel owl-theme">
+        {% for prod in product %}
+        <div class="ml-2 mr-2">
+            <div class="card" style="width: 16rem;">
+                <img src="/media/{{prod.product_img}}" class="card-img-top" height="250px" width="100px" alt="...">
+                <div class="card-body">
+                    <div style="height: 160px;">
+                        <h5 class="card-title" id="pr{{prod.id}}">{{prod.product_name}}</h5>
+                        <p class="card-text">{{prod.product_description}}</p>
+                    </div>
+                    <div class="btnn d-flex justify-content-center my-2">
+                    <input class="btn btn-primary btn-block cart-btn" id="{{prod.id}}" value="Add To Cart"><span id="{{prod.id}}"></span></input>
+                </div>
+                <a href="/shop/productPage/{{prod.id}}" class="btn btn-primary btn-block" name="">Quick View</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    <!-- EXPLANATION
+    1. the outer loop will create different carousels according to the categories and the inner for loop will display individual items in the respective carousel -->
+    
+</div>
+{% endblock %}
