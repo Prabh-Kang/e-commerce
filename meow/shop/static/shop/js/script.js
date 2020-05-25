@@ -55,25 +55,25 @@ function checkInternalStorage() {
 
 function addToCartFunc(button) {
     console.log(button);
-    
-
     button.addEventListener('click', (e) => {
         let btn = e.target;
         console.log(btn.id);
-        
+        let product_name= e.target.parentNode.querySelectorAll("input")[0].getAttribute("placeholder");
+        let product_price= e.target.parentNode.querySelectorAll("input")[1].getAttribute("placeholder");
+        console.log(product_name, product_price);
         let cartObj = checkInternalStorage();
-        if (Object.keys(cartObj).includes(e.target.id)) {
-            cartObj[e.target.id] += 1;
-        }
-        else {
-            cartObj[e.target.id] = 1;
-        }
+            cartObj[e.target.id] = [1, product_name, product_price];
         console.log(cartObj);
         localStorage.setItem("cart", JSON.stringify(cartObj));
-        loadDefault(e.target);
+        e.target.parentNode.innerHTML = `
+        <button class="btn btn-minus btn-sm btn-primary mr-3" id="${e.target.id}">-</button> <span id="${e.target.id}">${cartObj[e.target.id][0]}</span> 
+        <button class="btn btn-plus btn-sm btn-primary ml-3" id="${e.target.id}" >+</button> <input type="hidden" class="prodName" placeholder="${product_name}">
+        <input type="hidden" class="prodPrice" placeholder="${product_price}">`
+        plusBtnFunc(document.getElementById(`${e.target.id}`).parentNode.children[2]);
+        minusBtnFunc(document.getElementById(`${e.target.id}`).parentNode.children[0]);
         upadtecart();
-    })
-    loadDefault2(button);
+        })
+    loadDefault(button);
 }
 
 Array.from(cartBtns).forEach(button=> {
@@ -81,25 +81,17 @@ Array.from(cartBtns).forEach(button=> {
 })
 
 
-function loadDefault(button) {
-    let cartObj = checkInternalStorage();
 
-        button.parentNode.innerHTML = `
-        <button class="btn btn-minus btn-sm btn-primary mr-3" id="${button.id}">-</button> <span id="${button.id}">${cartObj[button.id]}</span> 
-        <button class="btn btn-plus btn-sm btn-primary ml-3" id="${button.id}" >+</button>
-        `
-        console.log("activating plus and minus btn functions");
         
         
-        plusBtnFunc(document.getElementById(`${button.id}`).parentNode.children[2]);
-        minusBtnFunc(document.getElementById(`${button.id}`).parentNode.children[0]);
-}
-function loadDefault2(button) {
+
+function loadDefault(button) {
     let cartObj = checkInternalStorage();
         if(Object.keys(cartObj).includes(button.id)){
         button.parentNode.innerHTML = `
-        <button class="btn btn-minus btn-sm btn-primary mr-3" id="${button.id}">-</button> <span id="${button.id}">${cartObj[button.id]}</span> 
-        <button class="btn btn-plus btn-sm btn-primary ml-3" id="${button.id}" >+</button>
+        <button class="btn btn-minus btn-sm btn-primary mr-3" id="${button.id}">-</button> <span id="${button.id}">${cartObj[button.id][0]}</span> 
+        <button class="btn btn-plus btn-sm btn-primary ml-3" id="${button.id}" >+</button> <input type="hidden" class="prodName" placeholder="{{prod.product_name}}">
+        <input type="hidden" class="prodPrice" placeholder="{{prod.product_price}}">
         `
         console.log("activating functions");
         }
@@ -116,8 +108,12 @@ function plusBtnFunc(button) {
     
     button.addEventListener("click", (button) => {
         console.log(button.target.parentNode.children[1]);
+        let product_name= button.target.parentNode.querySelectorAll("input")[0].getAttribute("placeholder");
+        let product_price= button.target.parentNode.querySelectorAll("input")[1].getAttribute("placeholder");
         let cartObj = checkInternalStorage();
-        cartObj[button.target.id] += 1;
+        cartObj[button.target.id][0] += 1;
+        cartObj[button.target.id][1] = product_name;
+        cartObj[button.target.id][2] = product_price;
         button.target.parentNode.children[1].innerHTML = Number(button.target.parentNode.children[1].innerText) + 1;
         console.log(2);
         localStorage.setItem("cart", JSON.stringify(cartObj));
@@ -138,14 +134,17 @@ function minusBtnFunc(button) {
     button.addEventListener("click", (button) => {
         let id = String(button.target.id);
         let cartObj = checkInternalStorage();
-        if (cartObj[button.target.id] == 1) {
-            button.target.parentNode.innerHTML = ` <button class="btn btn-primary btn-block btn-sm cart-btn" id="${button.target.id}"><span>Add To Cart </span></button>`;
+        if (cartObj[button.target.id][0] == 1) {
+            let product_name = cartObj[button.target.id][1];
+            let product_price = cartObj[button.target.id][2];
+            button.target.parentNode.innerHTML = ` <button class="btn btn-primary btn-block btn-sm cart-btn" id="${button.target.id}">Add To Cart</button><input type="hidden" class="prodName" placeholder="${product_name}">
+            <input type="hidden" class="prodPrice" placeholder="${product_price}">`;
             delete cartObj[button.target.id];
             localStorage.setItem("cart", JSON.stringify(cartObj));
             addToCartFunc(document.getElementById(id));
         }
         else {
-            cartObj[button.target.id] -= 1;
+            cartObj[button.target.id][0] -= 1;
             button.target.parentNode.children[1].innerHTML = Number(button.target.parentNode.children[1].innerText) - 1;
             localStorage.setItem("cart", JSON.stringify(cartObj));
         }
@@ -163,16 +162,21 @@ Array.from(minusBtns).forEach(button => {
 
 function upadtecart() {
     let cartObj = checkInternalStorage();
-    document.getElementById("cartNum").innerHTML = Object.keys(cartObj).length;
+    let noOfOrders = document.getElementById("cartNum");
+    let sum = 0;
+    for (let key in cartObj) {
+        sum+= Number(cartObj[key][0]);
+    }
+    noOfOrders.innerText = sum;
     console.log(Object.keys(cartObj).length);
     
     let i = 1;
     let html = "";
     for (let key in cartObj) {
-        let name = document.getElementById("pr" + String(key)).innerText;
-        let number = cartObj[key];
+        let product_name= cartObj[key][1];
+        let number = cartObj[key][0];
         html += `
-            ${i} ${name} : ${number} <br>
+            ${i} ${product_name} : ${number} <br>
         `
         i++;
     }

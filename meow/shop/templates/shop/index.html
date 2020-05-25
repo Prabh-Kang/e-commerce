@@ -4,7 +4,7 @@
 {% block body %}
 
 <div class="container">
-    
+
 </div>
 
 <div class="container my-4">
@@ -24,13 +24,17 @@
                         <p class="card-text">{{prod.product_description}}</p>
                     </div>
                     <div class="row">
-                    <div class="btnn d-flex justify-content-center my-2 mr-2 ml-3">
-                    <button class="btn btn-primary cart-btn btn-sm" id="{{prod.id}}">Add To Cart<span id="{{prod.id}}"></span></button>
-                </div>
-                <div>
-                <a href="/shop/productPage/{{prod.id}}" class="btn btn-primary btn-sm btn-block" style="position: relative; top: 7px;">Quick View</a>
-                </div>
-                </div>
+                        <div class="btnn d-flex justify-content-center my-2 mr-2 ml-3">
+                            <button class="btn btn-primary cart-btn btn-sm" id="{{prod.id}}">Add To Cart</button>
+                            <input type="hidden" class="prodName" placeholder="{{prod.product_name}}">
+                            <input type="hidden" class="prodPrice" placeholder="{{prod.product_price}}">
+
+                        </div>
+                        <div>
+                            <a href="/shop/productPage/{{prod.id}}" class="btn btn-primary btn-sm btn-block"
+                                style="position: relative; top: 7px;">Quick View</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,7 +44,7 @@
 
     <!-- EXPLANATION
     1. the outer loop will create different carousels according to the categories and the inner for loop will display individual items in the respective carousel -->
-    
+
 </div>
 
 

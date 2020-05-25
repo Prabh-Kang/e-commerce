@@ -12,7 +12,9 @@
         <h2>{{product.product_name}}</h2>
         <p class="description">{{product.product_description}}</p>
         <p class="price">Rs. {{product.product_price}}.<sup>00</sup></p>
-        <button class="btn btn-primary add-to-cart" id="{{product.id}}">Add To Cart</button>
+        <button class="btn btn-primary add-to-cart card-btn" id="{{product.id}}">Add To Cart</button>
+        <input type="hidden" class="prodName" placeholder="{{product.product_name}}">
+        <input type="hidden" class="prodPrice" placeholder="{{product.product_price}}">
     </div>
 </div>
 
