@@ -168,7 +168,7 @@ function upadtecart() {
     
     let i = 1;
     let html = "";
-    for (var key in cartObj) {
+    for (let key in cartObj) {
         let name = document.getElementById("pr" + String(key)).innerText;
         let number = cartObj[key];
         html += `

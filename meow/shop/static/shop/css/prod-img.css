@@ -70,7 +70,7 @@ body {
 
 .mainDiv .prod-detail h2 {
   margin-bottom: 13px;
-  white-space: nowrap;
+  white-space: wrap;
   width: 20rem;
   overflow: hidden;
   -webkit-animation: animated-text 2s steps(30, end) 1s 1 normal both;
