@@ -131,3 +131,8 @@ body {
   }
 }
 /*# sourceMappingURL=prod-img.css.map */
+#go-back {
+  position: absolute;
+  top: 76px;
+  left: 15px;
+}

@@ -87,11 +87,13 @@ Array.from(cartBtns).forEach(button=> {
 
 function loadDefault(button) {
     let cartObj = checkInternalStorage();
+    let product_name= button.parentNode.querySelectorAll("input")[0].getAttribute("placeholder");
+        let product_price= button.parentNode.querySelectorAll("input")[1].getAttribute("placeholder");
         if(Object.keys(cartObj).includes(button.id)){
         button.parentNode.innerHTML = `
         <button class="btn btn-minus btn-sm btn-primary mr-3" id="${button.id}">-</button> <span id="${button.id}">${cartObj[button.id][0]}</span> 
-        <button class="btn btn-plus btn-sm btn-primary ml-3" id="${button.id}" >+</button> <input type="hidden" class="prodName" placeholder="{{prod.product_name}}">
-        <input type="hidden" class="prodPrice" placeholder="{{prod.product_price}}">
+        <button class="btn btn-plus btn-sm btn-primary ml-3" id="${button.id}" >+</button> <input type="hidden" class="prodName" placeholder="${product_name}">
+        <input type="hidden" class="prodPrice" placeholder="${product_price}">
         `
         console.log("activating functions");
         }
@@ -103,9 +105,6 @@ function loadDefault(button) {
 let plusBtns = document.getElementsByClassName("btn-plus");
 
 function plusBtnFunc(button) {
-
-    console.log("plus button ", button);
-    
     button.addEventListener("click", (button) => {
         console.log(button.target.parentNode.children[1]);
         let product_name= button.target.parentNode.querySelectorAll("input")[0].getAttribute("placeholder");
@@ -125,10 +124,7 @@ Array.from(plusBtns).forEach(button => {
     plusBtnFunc(button);
 })
 
-
-
 let minusBtns = document.getElementsByClassName("btn-minus");
-
 function minusBtnFunc(button) {
     console.log("minus button ", button);
     button.addEventListener("click", (button) => {
@@ -171,12 +167,12 @@ function upadtecart() {
     console.log(Object.keys(cartObj).length);
     
     let i = 1;
-    let html = "";
+    let html = `<span class="h4 border-bottom border-secondary my-2">Items in the cart:</span><br>`;
     for (let key in cartObj) {
         let product_name= cartObj[key][1];
         let number = cartObj[key][0];
         html += `
-            ${i} ${product_name} : ${number} <br>
+            ${i}. ${product_name} : Qty.${number} <br>
         `
         i++;
     }
@@ -184,3 +180,10 @@ function upadtecart() {
     
 }
 upadtecart();
+
+let clearCart = document.getElementById("clearCart");
+clearCart.addEventListener("click", clearCartFunc);
+function clearCartFunc() {
+    localStorage.clear();
+    upadtecart();
+}

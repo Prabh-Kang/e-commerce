@@ -3,7 +3,7 @@
 {% block title %} {{product.product_name}} {% endblock %}
 <!-- CONTAINER -->
 {% block body %}
-
+<a href="/shop/" id="go-back" class="h1" style="color:grey;"><i class="fas fa-arrow-circle-left"></i></a>
 <div class="mainDiv">
     <div class="prod-img">
         <img src="/media/{{product.product_img}}" alt="Image" class="waitload">
@@ -12,9 +12,11 @@
         <h2>{{product.product_name}}</h2>
         <p class="description">{{product.product_description}}</p>
         <p class="price">Rs. {{product.product_price}}.<sup>00</sup></p>
-        <button class="btn btn-primary add-to-cart card-btn" id="{{product.id}}">Add To Cart</button>
+        <div class="button-div">
+        <button class="btn btn-primary add-to-cart cart-btn" id="{{product.id}}">Add To Cart</button>
         <input type="hidden" class="prodName" placeholder="{{product.product_name}}">
         <input type="hidden" class="prodPrice" placeholder="{{product.product_price}}">
+        </div>
     </div>
 </div>
 
@@ -23,3 +25,4 @@
 {% block script %}
 <script src="/static/shop/js/prod-page.js"></script>
 {% endblock %}
+
